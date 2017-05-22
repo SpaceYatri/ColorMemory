@@ -33,10 +33,10 @@ class HighScores {
         let entry = ["name": name, "score": score]
         scores.append(entry)
         
-        var sortedScores = scores.sorted { (entry1, entry2) -> Bool in
-            let n1:String = entry1["score"]!
-            let n2:String = entry2["score"]!
-            return Double(n2) < Double(n1)
+        var sortedScores = scores.sorted { (score1, score2) -> Bool in
+            let s1:String = score1["score"]!
+            let s2:String = score2["score"]!
+            return Double(s2) < Double(s1)
         }
         
         if sortedScores.count > 10 {
@@ -48,5 +48,18 @@ class HighScores {
     
     fileprivate func userDefaults() -> UserDefaults {
         return UserDefaults.standard
+    }
+    
+    func calculateRankings(forScore score: String) -> String {
+        let scores = getTopScores()
+        if scores.count == 0 {
+            return "1"
+        }
+        for (index, element) in scores.enumerated() {
+            if Double(element["score"]!) < Double(score) {
+                return "\(index + 1)"
+            }
+        }
+        return "NIL"
     }
 }
