@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ function for comparing optional variables of same type
+ */
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     switch (lhs, rhs) {
     case let (l?, r?):
@@ -21,8 +24,9 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 let kTopScoresKey = "topScoresKey"
 
-class HighScores {
-    static let sharedInstance = HighScores()
+/// Manages top score list. Saves top 10 scoring players.
+class TopScores {
+    static let sharedInstance = TopScores()
     
     func getTopScores() -> [Dictionary<String,String>] {
         return userDefaults().array(forKey: kTopScoresKey) as? [Dictionary<String,String>] ?? []
@@ -50,6 +54,13 @@ class HighScores {
         return UserDefaults.standard
     }
     
+    /**
+     Calculate ranking of the current score by fetching the already saved list of top 10 scores and comparing it. 
+     
+     - Parameter score: score for which ranking needs to be calculated.
+     
+     - Returns: current ranking for that score.
+     */
     func calculateRankings(forScore score: String) -> String {
         let scores = getTopScores()
         if scores.count == 0 {

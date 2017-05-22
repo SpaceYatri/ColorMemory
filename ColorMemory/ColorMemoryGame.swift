@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+//MARK: - Protocol
 protocol ColorMemoryDelegate {
     func colorMemoryDidStart(_ instance: ColorMemoryGame)
     func colorMemoryCorrectPair()
@@ -18,6 +18,7 @@ protocol ColorMemoryDelegate {
     func colorMemoryDidEnd(_ instance: ColorMemoryGame)
 }
 
+/// Business logic of ColorMemory game is written in this class
 class ColorMemoryGame {
     
     // MARK: - Properties
@@ -38,7 +39,6 @@ class ColorMemoryGame {
     
     var delegate: ColorMemoryDelegate?
 
-    
     var numberOfCards: Int {
         get {
             return cards.count
@@ -47,16 +47,30 @@ class ColorMemoryGame {
     
     // MARK: - Methods
     
+    /**
+     initializes variables to fire delegate to initiate the game
+     
+     - Parameter cardsData: array of images used for cards
+     
+     */
     func newGame(_ cardsData:[UIImage]) {
         cards = randomCards(cardsData)
         delegate?.colorMemoryDidStart(self)
     }
     
+    /**
+     resets properties and the game.
+     */
     func resetGame() {
         cards.removeAll()
         cardsShown.removeAll()
     }
     
+    /**
+     business logic after a card is selected. For the second card, its been compared with the one before. When shownCards = total cards, game is finished.
+     
+     - Parameter card: ColorCard that is being selected.
+     */
     func didSelectCard(_ card: ColorCard?) {
         guard let card = card else { return }
         
@@ -85,6 +99,9 @@ class ColorMemoryGame {
         }
     }
     
+    /**
+     returns the ColorCard from the array at Index = index.
+     */
     func cardAtIndex(_ index: Int) -> ColorCard? {
         if cards.count > index {
             return cards[index]
@@ -93,6 +110,9 @@ class ColorMemoryGame {
         }
     }
     
+    /**
+     checks the index of the card in the array
+     */
     func indexForCard(_ card: ColorCard) -> Int? {
         for index in 0...cards.count-1 {
             if card === cards[index] {
@@ -115,6 +135,13 @@ class ColorMemoryGame {
         return unpairedCard
     }
     
+    /**
+     Based on available images, creates a shuffled set of cards for the game.
+     
+     - Parameter cardsData: imageList for creating ColorCard pairs.
+     
+     - Returns: shuffled deck of n cards with n/2 pairs.
+     */
     fileprivate func randomCards(_ cardsData:[UIImage]) -> [ColorCard] {
         var cards = [ColorCard]()
         for i in 0...cardsData.count-1 {
@@ -127,6 +154,9 @@ class ColorMemoryGame {
 }
 
 extension Array {
+    /**
+     shuffle the array elements
+     */
     mutating func shuffle() {
         for _ in 1...self.count {
             self.sort { (_,_) in arc4random() < arc4random() }

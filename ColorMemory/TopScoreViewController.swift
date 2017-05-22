@@ -16,14 +16,8 @@ class TopScoreViewController: UIViewController, UITableViewDataSource, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        scores = HighScores.sharedInstance.getTopScores()
+        scores = TopScores.sharedInstance.getTopScores()
         tableView.reloadData()
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - UITableViewDataSource
@@ -41,7 +35,6 @@ class TopScoreViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "highScoreCell", for: indexPath) as! HighScoreTableViewCell
         
-        // Configure the cell...
         let score = scores[indexPath.row]
         let name = score["name"]!
         

@@ -14,7 +14,7 @@
 		367E96501ED2D04500C0411C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 367E964E1ED2D04500C0411C /* LaunchScreen.storyboard */; };
 		367E96591ED2D6F700C0411C /* ColorCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367E96581ED2D6F700C0411C /* ColorCard.swift */; };
 		367E965B1ED2D76700C0411C /* ColorMemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367E965A1ED2D76700C0411C /* ColorMemoryGame.swift */; };
-		367E965D1ED2D93100C0411C /* HighScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367E965C1ED2D93100C0411C /* HighScores.swift */; };
+		367E965D1ED2D93100C0411C /* TopScores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367E965C1ED2D93100C0411C /* TopScores.swift */; };
 		367E96601ED2D9D800C0411C /* ColorCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367E965F1ED2D9D800C0411C /* ColorCardCollectionViewCell.swift */; };
 		367E96631ED2E63B00C0411C /* TopScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367E96621ED2E63B00C0411C /* TopScoreViewController.swift */; };
 		367E96651ED2E7E000C0411C /* HighScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367E96641ED2E7E000C0411C /* HighScoreTableViewCell.swift */; };
@@ -30,7 +30,7 @@
 		367E96511ED2D04500C0411C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		367E96581ED2D6F700C0411C /* ColorCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCard.swift; sourceTree = "<group>"; };
 		367E965A1ED2D76700C0411C /* ColorMemoryGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorMemoryGame.swift; sourceTree = "<group>"; };
-		367E965C1ED2D93100C0411C /* HighScores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScores.swift; sourceTree = "<group>"; };
+		367E965C1ED2D93100C0411C /* TopScores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopScores.swift; sourceTree = "<group>"; };
 		367E965F1ED2D9D800C0411C /* ColorCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		367E96621ED2E63B00C0411C /* TopScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopScoreViewController.swift; sourceTree = "<group>"; };
 		367E96641ED2E7E000C0411C /* HighScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreTableViewCell.swift; sourceTree = "<group>"; };
@@ -83,7 +83,7 @@
 			children = (
 				367E96581ED2D6F700C0411C /* ColorCard.swift */,
 				367E965A1ED2D76700C0411C /* ColorMemoryGame.swift */,
-				367E965C1ED2D93100C0411C /* HighScores.swift */,
+				367E965C1ED2D93100C0411C /* TopScores.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -183,7 +183,7 @@
 				367E96481ED2D04400C0411C /* ViewController.swift in Sources */,
 				367E96591ED2D6F700C0411C /* ColorCard.swift in Sources */,
 				367E96631ED2E63B00C0411C /* TopScoreViewController.swift in Sources */,
-				367E965D1ED2D93100C0411C /* HighScores.swift in Sources */,
+				367E965D1ED2D93100C0411C /* TopScores.swift in Sources */,
 				367E96461ED2D04400C0411C /* AppDelegate.swift in Sources */,
 				367E96651ED2E7E000C0411C /* HighScoreTableViewCell.swift in Sources */,
 				367E965B1ED2D76700C0411C /* ColorMemoryGame.swift in Sources */,
@@ -350,6 +350,7 @@
 				367E96561ED2D04500C0411C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Main view controller which handles the game and contains the logic for interaction with the game.
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ColorMemoryDelegate {
     
     // MARK: Properties
@@ -18,17 +19,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     fileprivate var activeCards: [IndexPath] = []
     let colorMemoryGame = ColorMemoryGame()
     
-    // MARK: - Lifecycle
+    // MARK: - Overrides
     
     override func viewDidLoad() {
         super.viewDidLoad()
         scoreCardView.layer.cornerRadius = 4
         colorMemoryGame.delegate = self
         setupNewGame()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
     }
     
     // MARK: - Methods
@@ -45,13 +42,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func savePlayerScore(_ name: String) {
-        HighScores.sharedInstance.saveTopScore(name, score: scoreLabel.text!)
+        TopScores.sharedInstance.saveTopScore(name, score: scoreLabel.text!)
     }
     
     // MARK: - UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return colorMemoryGame.numberOfCards > 0 ? 1 : 0
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -79,7 +76,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.deselectItem(at: indexPath, animated:true)
     }
     
-    // MARK: - UICollectionViewDataSource
+    // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -95,8 +92,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        let inset = (collectionView.frame.height - (4 * 190 * (collectionView.frame.width / 4.0 - 15.0) / 152) ) / 5
-        return inset
+        let gap = (collectionView.frame.height - (4 * 190 * (collectionView.frame.width / 4.0 - 15.0) / 152) ) / 5
+        return gap
     }
     
     // MARK: - MemoryGameDelegate
@@ -124,11 +121,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     
     func colorMemoryDidEnd(_ game: ColorMemoryGame) {
-        let alertController = UIAlertController(
-            title: "Save Score",
-            message: "You finished the game with a score of " + scoreLabel.text!,
-            preferredStyle: .alert)
-        
+        let ranking = TopScores.sharedInstance.calculateRankings(forScore: scoreLabel.text!)
+        let message = ranking == "NIL" ? "Your score is -> " + scoreLabel.text! : "Your score is -> " + scoreLabel.text! + "\nand ranking is -> " + ranking
+        let alertController = UIAlertController( title: "Congratulations", message: message, preferredStyle: .alert)
         let saveAction = UIAlertAction(title: "Save Score", style: .default) {
             [unowned self] (_) in
             if let playerNameField = alertController.textFields?.first  {

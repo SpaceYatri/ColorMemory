@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// represents single cell from the game. Contains the card and its behaviour on touch/tap.
 class ColorCardCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
@@ -15,6 +16,7 @@ class ColorCardCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var frontImageView: UIImageView!
     @IBOutlet weak var backImageView: UIImageView!
     
+    //set the front image of the card based on ColorCard info. back image will be same for all.
     var card:ColorCard? {
         didSet {
             guard let card = card else { return }
@@ -26,6 +28,12 @@ class ColorCardCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Methods
     
+    /**
+     Based on available images, creates a shuffled set of cards for the game.
+     
+     - Parameter show: determines whether card should be revealed or hides.
+     - Parameter animated: determines whether revalation/hidden should be done with animation or not
+    */
     func showCard(_ show: Bool, animted: Bool) {
         frontImageView.isHidden = false
         backImageView.isHidden = false

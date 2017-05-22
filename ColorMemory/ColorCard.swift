@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// ColorCard represents a single card along with its properties that uniquely identifies it and keeps its states
 class ColorCard: NSObject {
     
     // MARK: - Properties
@@ -16,10 +17,24 @@ class ColorCard: NSObject {
     var image:UIImage
     
     // MARK: - Init
+    /**
+     init with image
+     
+     - Parameter image: forground image of the card.
+     
+     - Returns: instance of ColorCard.
+     */
     init(image:UIImage) {
         self.image = image
     }
     
+    /**
+     init with another instance of ColorCard
+     
+     - Parameter card: Instance of ColorCard for copy.
+     
+     - Returns: instance of ColorCard.
+     */
     init(card:ColorCard) {
         self.uid = (card.uid as NSUUID).copy() as! UUID
         self.shown = card.shown
